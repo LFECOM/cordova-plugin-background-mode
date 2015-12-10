@@ -21,7 +21,9 @@
 
 #import "APPBackgroundMode.h"
 
-@implementation APPBackgroundMode
+@implementation APPBackgroundMode{
+    AVAudioPlayer *notificationPlayer;
+}
 
 NSString *const kAPPBackgroundJsNamespace = @"cordova.plugins.backgroundMode";
 NSString *const kAPPBackgroundEventActivate = @"activate";
@@ -93,6 +95,19 @@ NSString *const kAPPBackgroundEventFailure = @"failure";
     enabled = NO;
 
     [self stopKeepingAwake];
+}
+
+- (void)playAudioFile:(CDVInvokedUrlCommand *)command{
+    NSString *name = [command.arguments objectAtIndex:0];
+    NSString *type = [command.arguments objectAtIndex:1];
+    
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:type]];
+    
+    notificationPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    notificationPlayer.volume = 100;
+    
+    [notificationPlayer prepareToPlay];
+    [notificationPlayer play];
 }
 
 #pragma mark -

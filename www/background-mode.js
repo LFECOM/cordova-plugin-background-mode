@@ -88,6 +88,11 @@ exports.disable = function () {
     cordova.exec(null, null, 'BackgroundMode', 'disable', []);
 };
 
+
+exports.notificationPlay = function (fileName, fileType) {
+    cordova.exec(null, null, 'BackgroundMode', 'playAudioFile', [fileName, fileType]);
+};
+
 /**
  * List of all available options with their default value.
  *
