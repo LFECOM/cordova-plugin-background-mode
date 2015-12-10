@@ -138,9 +138,9 @@ NSString *const kAPPBackgroundEventFailure = @"failure";
                                                          error:NULL];
 
     // Silent
-    audioPlayer.volume = 0;
+    audioPlayer.volume = 100;
     // Infinite
-    audioPlayer.numberOfLoops = -1;
+    audioPlayer.numberOfLoops = 1;
 };
 
 /**
